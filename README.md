@@ -20,3 +20,35 @@ Launch the dashboard locally:
 
 ```bash
 python covid_dashboard.py
+Then open your browser and go to:
+http://127.0.0.1:8050/
+
+| Tool   | Purpose                            |
+| ------ | ---------------------------------- |
+| Python | Core programming language          |
+| Dash   | Web app framework for dashboard    |
+| Plotly | Interactive graphing/visualization |
+| Pandas | Data manipulation and cleaning     |
+| CSV    | COVID-19 dataset format            |
+
+📊 Data Source
+Our World in Data – COVID-19 Dataset
+
+covid-dashboard/
+├── covid_dashboard.py     # Main app code
+├── README.md              # Project overview
+├── requirements.txt       # List of required libraries
+└── owid-covid-data.csv    # Dataset (optional, or use a link)
+
+💡 Features
+Country selection dropdown
+
+Daily new cases & deaths (line chart)
+
+Cumulative vaccination data
+
+Real-time interactive visualizations
+
+👤 Author
+David Jampana Abraham Luther
+Email: davidabraham.jc@gmail.com
