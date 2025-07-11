@@ -32,7 +32,12 @@ http://127.0.0.1:8050/
 | CSV    | COVID-19 dataset format            |
 
 **📊 Data Source**
-Our World in Data – COVID-19 Dataset
+## Dataset
+
+This project uses the COVID-19 dataset from [Our World in Data](https://covid.ourworldindata.org/data/owid-covid-data.csv).
+
+The dataset is large (~100MB) and not included in this repository.  
+To run the dashboard, please download the dataset manually and place the file named `owid-covid-data.csv` in the project root folder.
 
 covid-dashboard/
 ├── covid_dashboard.py     # Main app code
