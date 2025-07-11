@@ -31,7 +31,7 @@ http://127.0.0.1:8050/
 | Pandas | Data manipulation and cleaning     |
 | CSV    | COVID-19 dataset format            |
 
-📊 Data Source
+**📊 Data Source**
 Our World in Data – COVID-19 Dataset
 
 covid-dashboard/
@@ -40,7 +40,7 @@ covid-dashboard/
 ├── requirements.txt       # List of required libraries
 └── owid-covid-data.csv    # Dataset (optional, or use a link)
 
-💡 Features
+**💡 Features**
 Country selection dropdown
 
 Daily new cases & deaths (line chart)
@@ -49,6 +49,6 @@ Cumulative vaccination data
 
 Real-time interactive visualizations
 
-👤 Author
+**👤 Author**
 David Jampana Abraham Luther
 Email: davidabraham.jc@gmail.com
