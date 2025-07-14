@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>COVID-19 Global Dashboard</title>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    h1 { text-align: center; }
+    #dropdown { width: 300px; margin: 10px auto; display: block; }
+    .chart { max-width: 900px; margin: 40px auto; }
+  </style>
+</head>
+<body>
+
+  <h1>🌍 COVID-19 Global Dashboard</h1>
+
+  <select id="country-select">
+    <option value="United States">United States</option>
+    <option value="India">India</option>
+    <option value="Brazil">Brazil</option>
+    <option value="United Kingdom">United Kingdom</option>
+    <option value="Germany">Germany</option>
+    <!-- Add more countries here -->
+  </select>
+
+  <div id="cases-chart" class="chart"></div>
+  <div id="deaths-chart" class="chart"></div>
+  <div id="vaccination-chart" class="chart"></div>
+
+  <script>
+    const covidDataUrl = "https://covid.ourworldindata.org/data/owid-covid-data.json";
+    let covidData = null;
+
+    async function fetchData() {
+      const response = await fetch(covidDataUrl);
+      covidData = await response.json();
+      updateCharts(document.getElementById('country-select').value);
+    }
+
+    function updateCharts(country) {
+      if (!covidData[country]) {
+        alert('No data for ' + country);
+        return;
+      }
+
+      const countryData = covidData[country].data;
+
+      // Prepare arrays
+      const dates = countryData.map(d => d.date);
+      const newCases = countryData.map(d => d.new_cases || 0);
+      const newDeaths = countryData.map(d => d.new_deaths || 0);
+      const peopleVaccinated = countryData.map(d => d.people_vaccinated || 0);
+
+      // Cases chart
+      const casesTrace = {
+        x: dates,
+        y: newCases,
+        type: 'scatter',
+        mode: 'lines+markers',
+        name: 'New Cases',
+        line: { color: 'blue' }
+      };
+      Plotly.newPlot('cases-chart', [casesTrace], { title: `Daily New COVID-19 Cases in ${country}` });
+
+      // Deaths chart
+      const deathsTrace = {
+        x: dates,
+        y: newDeaths,
+        type: 'scatter',
+        mode: 'lines+markers',
+        name: 'New Deaths',
+        line: { color: 'red' }
+      };
+      Plotly.newPlot('deaths-chart', [deathsTrace], { title: `Daily New COVID-19 Deaths in ${country}` });
+
+      // Vaccination chart
+      const vaccTrace = {
+        x: dates,
+        y: peopleVaccinated,
+        type: 'scatter',
+        mode: 'lines+markers',
+        name: 'People Vaccinated',
+        line: { color: 'green' }
+      };
+      Plotly.newPlot('vaccination-chart', [vaccTrace], { title: `Cumulative Vaccinations in ${country}` });
+    }
+
+    document.getElementById('country-select').addEventListener('change', (e) => {
+      updateCharts(e.target.value);
+    });
+
+    fetchData();
+  </script>
+
+</body>
+</html>
